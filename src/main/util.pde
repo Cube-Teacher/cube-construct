@@ -1,4 +1,4 @@
 void mouseDragged(){
-    rotateangleY = mouseX-pmouseX;
-    rotateangleX = mouseY-pmouseY;
+    rotateangleY += (mouseX-pmouseX)*1;
+    rotateangleX += (mouseY-pmouseY)*-1;
 }
