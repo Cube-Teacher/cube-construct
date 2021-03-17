@@ -1,5 +1,5 @@
-class test{
-  test(){
+class RubikCube {
+  RubikCube(){
     rect(50,50,50,50);
   }
 }
