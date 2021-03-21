@@ -7,8 +7,8 @@ class RubikCube {
     this.sideLinethickness = sideLinethickness;
   }
   
-  void createSurface(){
-    CubeSurface(this.cubeLinethickness);
+  void createSurface(float len){
+    CubeSurface(this.cubeLinethickness, len);
   }
 
   void createSideline(){

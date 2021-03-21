@@ -18,51 +18,52 @@ int find_color(String cubeColor){
   return 0;
 }
 
-void CubeSurface(float lineThickness){
+void CubeSurface(float lineThickness, float len){
   beginShape(QUADS);
 
   strokeWeight(lineThickness);
   // TOP
+  len /= 2;
   fill(find_color("WHITE"));
-  vertex(-sideLength, -sideLength, -sideLength);
-  vertex( sideLength, -sideLength, -sideLength);
-  vertex( sideLength, -sideLength,  sideLength);
-  vertex(-sideLength, -sideLength,  sideLength);
+  vertex(-len, -len, -len);
+  vertex( len, -len, -len);
+  vertex( len, -len,  len);
+  vertex(-len, -len,  len);
   
   // DOWN
   fill(find_color("YELLOW"));
-  vertex(-sideLength,  sideLength, -sideLength);
-  vertex( sideLength,  sideLength, -sideLength);
-  vertex( sideLength,  sideLength,  sideLength);
-  vertex(-sideLength,  sideLength,  sideLength);
+  vertex(-len,  len, -len);
+  vertex( len,  len, -len);
+  vertex( len,  len,  len);
+  vertex(-len,  len,  len);
 
   // 
   fill(find_color("ORANGE"));
-  vertex( sideLength, -sideLength, -sideLength);
-  vertex( sideLength, -sideLength,  sideLength);
-  vertex( sideLength,  sideLength,  sideLength);
-  vertex( sideLength,  sideLength, -sideLength);
+  vertex( len, -len, -len);
+  vertex( len, -len,  len);
+  vertex( len,  len,  len);
+  vertex( len,  len, -len);
   
   // 
   fill(find_color("RED"));
-  vertex(-sideLength, -sideLength, -sideLength);
-  vertex(-sideLength, -sideLength,  sideLength);
-  vertex(-sideLength,  sideLength,  sideLength);
-  vertex(-sideLength,  sideLength, -sideLength);
+  vertex(-len, -len, -len);
+  vertex(-len, -len,  len);
+  vertex(-len,  len,  len);
+  vertex(-len,  len, -len);
 
   // 
   fill(find_color("GREEN"));
-  vertex( sideLength, -sideLength, -sideLength);
-  vertex(-sideLength, -sideLength, -sideLength);
-  vertex(-sideLength,  sideLength, -sideLength);
-  vertex( sideLength,  sideLength, -sideLength);
+  vertex( len, -len, -len);
+  vertex(-len, -len, -len);
+  vertex(-len,  len, -len);
+  vertex( len,  len, -len);
   
   // 
   fill(find_color("BLUE"));
-  vertex( sideLength, -sideLength,  sideLength);
-  vertex(-sideLength, -sideLength,  sideLength);
-  vertex(-sideLength,  sideLength,  sideLength);
-  vertex( sideLength,  sideLength,  sideLength);
+  vertex( len, -len,  len);
+  vertex(-len, -len,  len);
+  vertex(-len,  len,  len);
+  vertex( len,  len,  len);
 
   strokeWeight(1);
   endShape();
