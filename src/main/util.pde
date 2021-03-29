@@ -1,7 +1,7 @@
-void mouseDragged(){
-  rotateangleY += (mouseX-pmouseX)*1;
-  rotateangleX += (mouseY-pmouseY)*-1;
-}
+// void mouseDragged(){
+//   rotateangleY += (mouseX-pmouseX)*1;
+//   rotateangleX += (mouseY-pmouseY)*-1;
+// }
 
 float getDistance(float ratio){
 	return sideLength*2*ratio;
@@ -16,6 +16,11 @@ int find_color(String cubeColor){
   else if (cubeColor=="ORANGE") {return #ff5800;}
   else if (cubeColor=="BLACK")  {return #000000;}
   return 0;
+}
+
+void find_command(RubikCube tmp){
+  String command = "w";
+  if(command=="w"){tmp.yellow2_clockwise=true;}
 }
 
 void CubeSurface(float lineThickness, float len){
