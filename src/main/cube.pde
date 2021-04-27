@@ -34,42 +34,42 @@ class boxTemplate{
     len = this.len;
 
     // TOP
-    // fill(find_color(this.upFace));
+    fill(find_color(this.upFace));
     vertex(-len, -len, -len);
     vertex( len, -len, -len);
     vertex( len, -len,  len);
     vertex(-len, -len,  len);
     
     // DOWN
-    // fill(find_color(this.downFace));
+    fill(find_color(this.downFace));
     vertex(-len,  len, -len);
     vertex( len,  len, -len);
     vertex( len,  len,  len);
     vertex(-len,  len,  len);
 
     // 
-    // fill(find_color(this.leftFace));
+    fill(find_color(this.leftFace));
     vertex( len, -len, -len);
     vertex( len, -len,  len);
     vertex( len,  len,  len);
     vertex( len,  len, -len);
     
     // 
-    // fill(find_color(this.rightFace));
+    fill(find_color(this.rightFace));
     vertex(-len, -len, -len);
     vertex(-len, -len,  len);
     vertex(-len,  len,  len);
     vertex(-len,  len, -len);
 
     // 
-    // fill(find_color(this.frontFace));
+    fill(find_color(this.frontFace));
     vertex( len, -len, -len);
     vertex(-len, -len, -len);
     vertex(-len,  len, -len);
     vertex( len,  len, -len);
     
     // 
-    // fill(find_color(this.backFace));
+    fill(find_color(this.backFace));
     vertex( len, -len,  len);
     vertex(-len, -len,  len);
     vertex(-len,  len,  len);

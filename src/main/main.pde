@@ -1,4 +1,6 @@
 import peasy.*;
+import java.util.Scanner;
+import java.io.IOException;
 
 void settings() {
   System.setProperty("jogl.disable.openglcore", "true");
@@ -9,12 +11,9 @@ float sideLength = 100;
 
 RubikCube Cube;
 PeasyCam cam;
+commandTemplate Command;
 
-BufferedReader reader;
 String line;
-String[] command;
-int commandmaxcnt = 0;
-int commandcnt = 0;
 
 void setup(){
   noFill();
@@ -25,17 +24,18 @@ void setup(){
   cam.setMinimumDistance(1000);
   cam.setMaximumDistance(2000);
 
-  command = loadStrings("./command.txt");
-  commandmaxcnt = command.length;
+  Command = new commandTemplate();
+
+  // command = loadStrings("./command.txt");
+  // commandmaxcnt = command.length;
   // for(int i=0;i<command.length;i++){
   //   print("|",trim(command[i]),"|");
   // }
 }
 
-
-boolean mutex = true;
-
 void draw(){
+
+  Command.read();
 
   background(255);
 
@@ -56,10 +56,13 @@ void draw(){
       for(int k=0;k<3;k++){
         pushMatrix();
 
-        if(commandcnt<commandmaxcnt && mutex){
-          find_command(command[commandcnt]);
-          ++commandcnt;
-          mutex = false;
+        if(Command.fileMutex == true){
+          print("here");
+          if(Command.processMutex==true){
+            print(Command.command);
+            Command.enable(Command.command);
+            Command.processMutex = false;
+          }
         }
 
         // i==0 Green1 Blue3
@@ -102,7 +105,8 @@ void draw(){
       Cube.UpdateGreen1();
       Cube.rotateAngle = 0.0;
       Cube.green1_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -112,7 +116,8 @@ void draw(){
       Cube.UpdateGreen2();
       Cube.rotateAngle = 0.0;
       Cube.green2_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -122,7 +127,8 @@ void draw(){
       Cube.UpdateGreen3();
       Cube.rotateAngle = 0.0;
       Cube.green3_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -132,7 +138,8 @@ void draw(){
       Cube.UpdateWhite1();
       Cube.rotateAngle = 0.0;
       Cube.white1_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -142,7 +149,8 @@ void draw(){
       Cube.UpdateWhite2 ();
       Cube.rotateAngle = 0.0;
       Cube.white2_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -152,7 +160,8 @@ void draw(){
       Cube.UpdateWhite3();
       Cube.rotateAngle = 0.0;
       Cube.white3_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -162,7 +171,8 @@ void draw(){
       Cube.UpdateRed3();
       Cube.rotateAngle = 0.0;
       Cube.red3_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -172,7 +182,8 @@ void draw(){
       Cube.UpdateRed2();
       Cube.rotateAngle = 0.0;
       Cube.red2_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -182,7 +193,8 @@ void draw(){
       Cube.UpdateRed1();
       Cube.rotateAngle = 0.0;
       Cube.red1_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -192,7 +204,8 @@ void draw(){
       Cube.UpdateOrange1();
       Cube.rotateAngle = 0.0;
       Cube.orange1_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -202,7 +215,8 @@ void draw(){
       Cube.UpdateOrange2();
       Cube.rotateAngle = 0.0;
       Cube.orange2_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
   
@@ -212,7 +226,8 @@ void draw(){
       Cube.UpdateOrange3();
       Cube.rotateAngle = 0.0;
       Cube.orange3_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -222,7 +237,8 @@ void draw(){
       Cube.UpdateBlue3();
       Cube.rotateAngle = 0.0;
       Cube.blue3_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -232,7 +248,8 @@ void draw(){
       Cube.UpdateBlue2();
       Cube.rotateAngle = 0.0;
       Cube.blue2_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -242,7 +259,8 @@ void draw(){
       Cube.UpdateBlue1();
       Cube.rotateAngle = 0.0;
       Cube.blue1_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -252,7 +270,8 @@ void draw(){
       Cube.UpdateYellow1();
       Cube.rotateAngle = 0.0;
       Cube.yellow1_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
   
@@ -262,7 +281,8 @@ void draw(){
       Cube.UpdateYellow2();
       Cube.rotateAngle = 0.0;
       Cube.yellow2_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 
@@ -272,7 +292,8 @@ void draw(){
       Cube.UpdateYellow3();
       Cube.rotateAngle = 0.0;
       Cube.yellow3_clockwise = false;
-      mutex = true;
+      Command.processMutex = true;
+      Command.clear();
     }
   }
 }
