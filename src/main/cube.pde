@@ -1,4 +1,10 @@
 
+/*
+boxTemplate:
+Box is a little cube of out RubikCube. 
+Hence, we will use 27 cubes to constuct RubikCube.
+Since there are 6 colors on RubikCube. We also need color attribute of little cube.
+*/
 class boxTemplate{
   String  upFace         ;
   String  downFace       ;
@@ -9,6 +15,7 @@ class boxTemplate{
   float   len            ;
   float   lineThickness  ;
 
+  // constructor
   boxTemplate(){
     upFace         = "WHITE";
     downFace       = "YELLOW";
@@ -27,42 +34,42 @@ class boxTemplate{
     len = this.len;
 
     // TOP
-    fill(find_color(this.upFace));
+    // fill(find_color(this.upFace));
     vertex(-len, -len, -len);
     vertex( len, -len, -len);
     vertex( len, -len,  len);
     vertex(-len, -len,  len);
     
     // DOWN
-    fill(find_color(this.downFace));
+    // fill(find_color(this.downFace));
     vertex(-len,  len, -len);
     vertex( len,  len, -len);
     vertex( len,  len,  len);
     vertex(-len,  len,  len);
 
     // 
-    fill(find_color(this.leftFace));
+    // fill(find_color(this.leftFace));
     vertex( len, -len, -len);
     vertex( len, -len,  len);
     vertex( len,  len,  len);
     vertex( len,  len, -len);
     
     // 
-    fill(find_color(this.rightFace));
+    // fill(find_color(this.rightFace));
     vertex(-len, -len, -len);
     vertex(-len, -len,  len);
     vertex(-len,  len,  len);
     vertex(-len,  len, -len);
 
     // 
-    fill(find_color(this.frontFace));
+    // fill(find_color(this.frontFace));
     vertex( len, -len, -len);
     vertex(-len, -len, -len);
     vertex(-len,  len, -len);
     vertex( len,  len, -len);
     
     // 
-    fill(find_color(this.backFace));
+    // fill(find_color(this.backFace));
     vertex( len, -len,  len);
     vertex(-len, -len,  len);
     vertex(-len,  len,  len);
@@ -79,6 +86,9 @@ class RubikCube {
   boxTemplate[][][] cubebox         ;
   boxTemplate[][][] prebox          ;
 
+  /*
+    Interface for outside command to control RubikCube rotating.
+  */
   boolean orange1_Counterclockwise  ;
   boolean orange2_Counterclockwise  ;
   boolean orange3_Counterclockwise  ;
@@ -380,6 +390,12 @@ class RubikCube {
     }
   }
 
+  /*
+    because Cube it is symmetric
+    Red1 is equal to Orange3
+    Red2 is equal to Orange2
+    Red3 is equal to Orange1
+  */
   void UpdateRed1(){this.UpdateOrange3();}
   void UpdateRed2(){this.UpdateOrange2();}
   void UpdateRed3(){this.UpdateOrange1();}

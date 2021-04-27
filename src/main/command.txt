@@ -1,2 +1,3 @@
-Up
-Down
+green3_clockwise
+white1_clockwise
+green2_clockwise
