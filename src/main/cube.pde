@@ -17,14 +17,14 @@ class boxTemplate{
 
   // constructor
   boxTemplate(){
-    upFace         = "WHITE";
-    downFace       = "YELLOW";
-    leftFace       = "ORANGE";
-    rightFace      = "RED";
-    frontFace      = "GREEN";
-    backFace       = "BLUE";
-    len            = sideLength/2;
-    lineThickness  = 15;
+    upFace          = "WHITE";
+    downFace        = "YELLOW";
+    rightFace       = "ORANGE";
+    leftFace        = "RED";
+    backFace        = "GREEN";
+    frontFace       = "BLUE";
+    len             = sideLength/2;
+    lineThickness   = 15;
   }
 
   void creatBox(){
@@ -48,28 +48,28 @@ class boxTemplate{
     vertex(-len,  len,  len);
 
     // 
-    fill(find_color(this.leftFace));
+    fill(find_color(this.rightFace));
     vertex( len, -len, -len);
     vertex( len, -len,  len);
     vertex( len,  len,  len);
     vertex( len,  len, -len);
     
     // 
-    fill(find_color(this.rightFace));
+    fill(find_color(this.leftFace));
     vertex(-len, -len, -len);
     vertex(-len, -len,  len);
     vertex(-len,  len,  len);
     vertex(-len,  len, -len);
 
     // 
-    fill(find_color(this.frontFace));
+    fill(find_color(this.backFace));
     vertex( len, -len, -len);
     vertex(-len, -len, -len);
     vertex(-len,  len, -len);
     vertex( len,  len, -len);
     
     // 
-    fill(find_color(this.backFace));
+    fill(find_color(this.frontFace));
     vertex( len, -len,  len);
     vertex(-len, -len,  len);
     vertex(-len,  len,  len);
@@ -89,49 +89,50 @@ class RubikCube {
   /*
     Interface for outside command to control RubikCube rotating.
   */
-  boolean orange1_Counterclockwise  ;
-  boolean orange2_Counterclockwise  ;
-  boolean orange3_Counterclockwise  ;
-  boolean red1_Counterclockwise     ;
-  boolean red2_Counterclockwise     ;
-  boolean red3_Counterclockwise     ;
+  boolean right1_Counterclockwise   ;
+  boolean right2_Counterclockwise   ;
+  boolean right3_Counterclockwise   ;
+  boolean left1_Counterclockwise    ;
+  boolean left2_Counterclockwise    ;
+  boolean left3_Counterclockwise    ;
 
-  boolean green1_Counterclockwise   ;
-  boolean green2_Counterclockwise   ;
-  boolean green3_Counterclockwise   ;
-  boolean blue1_Counterclockwise    ;
-  boolean blue2_Counterclockwise    ;  
-  boolean blue3_Counterclockwise    ;
+  boolean back1_Counterclockwise    ;
+  boolean back2_Counterclockwise    ;
+  boolean back3_Counterclockwise    ;
+  boolean front1_Counterclockwise   ;
+  boolean front2_Counterclockwise   ;  
+  boolean front3_Counterclockwise   ;
 
-  boolean white1_Counterclockwise   ;
-  boolean white2_Counterclockwise   ;
-  boolean white3_Counterclockwise   ;
-  boolean yellow1_Counterclockwise  ;
-  boolean yellow2_Counterclockwise  ;
-  boolean yellow3_Counterclockwise  ;
+  boolean up1_Counterclockwise      ;
+  boolean up2_Counterclockwise      ;
+  boolean up3_Counterclockwise      ;
+  boolean down1_Counterclockwise    ;
+  boolean down2_Counterclockwise    ;
+  boolean down3_Counterclockwise    ;
 
-  boolean orange1_clockwise  ;
-  boolean orange2_clockwise  ;
-  boolean orange3_clockwise  ;
-  boolean red1_clockwise     ;
-  boolean red2_clockwise     ;
-  boolean red3_clockwise     ;
+  boolean right1_clockwise          ;
+  boolean right2_clockwise          ;
+  boolean right3_clockwise          ;
+  boolean left1_clockwise           ;
+  boolean left2_clockwise           ;
+  boolean left3_clockwise           ;
 
-  boolean green1_clockwise   ;
-  boolean green2_clockwise   ;
-  boolean green3_clockwise   ;
-  boolean blue1_clockwise    ;
-  boolean blue2_clockwise    ;  
-  boolean blue3_clockwise    ;
+  boolean back1_clockwise           ;
+  boolean back2_clockwise           ;
+  boolean back3_clockwise           ;
+  boolean front1_clockwise          ;
+  boolean front2_clockwise          ;        
+  boolean front3_clockwise          ;
 
-  boolean white1_clockwise   ;
-  boolean white2_clockwise   ;
-  boolean white3_clockwise   ;
-  boolean yellow1_clockwise  ;
-  boolean yellow2_clockwise  ;
-  boolean yellow3_clockwise  ;
+  boolean up1_clockwise             ;
+  boolean up2_clockwise             ;
+  boolean up3_clockwise             ;
+  boolean down1_clockwise           ;
+  boolean down2_clockwise           ;
+  boolean down3_clockwise           ;
 
   float rotateAngle;
+  float rotateSpeed;
 
   RubikCube(float cubeLinethickness, float sideLinethickness){
     this.cubeLinethickness = cubeLinethickness;
@@ -154,49 +155,89 @@ class RubikCube {
       }
     }
 
-    this.orange1_Counterclockwise = false ;
-    this.orange2_Counterclockwise = false ;
-    this.orange3_Counterclockwise = false ;
-    this.red1_Counterclockwise    = false ;
-    this.red2_Counterclockwise    = false ;
-    this.red3_Counterclockwise    = false ;
+    this.right1_Counterclockwise    = false ;
+    this.right2_Counterclockwise    = false ;
+    this.right3_Counterclockwise    = false ;
+    this.left1_Counterclockwise     = false ;
+    this.left2_Counterclockwise     = false ;
+    this.left3_Counterclockwise     = false ;
 
-    this.green1_Counterclockwise  = false ;
-    this.green2_Counterclockwise  = false ;
-    this.green3_Counterclockwise  = false ;
-    this.blue1_Counterclockwise   = false ;
-    this.blue2_Counterclockwise   = false ;  
-    this.blue3_Counterclockwise   = false ;
+    this.back1_Counterclockwise     = false ;
+    this.back2_Counterclockwise     = false ;
+    this.back3_Counterclockwise     = false ;
+    this.front1_Counterclockwise    = false ;
+    this.front2_Counterclockwise    = false ;  
+    this.front3_Counterclockwise    = false ;
 
-    this.white1_Counterclockwise  = false ;
-    this.white2_Counterclockwise  = false ;
-    this.white3_Counterclockwise  = false ;
-    this.yellow1_Counterclockwise = false ;
-    this.yellow2_Counterclockwise = false ;
-    this.yellow3_Counterclockwise = false ;
+    this.up1_Counterclockwise       = false ;
+    this.up2_Counterclockwise       = false ;
+    this.up3_Counterclockwise       = false ;
+    this.down1_Counterclockwise     = false ;
+    this.down2_Counterclockwise     = false ;
+    this.down3_Counterclockwise     = false ;
 
-    this.orange1_clockwise = false ;
-    this.orange2_clockwise = false ;
-    this.orange3_clockwise = false ;
-    this.red1_clockwise    = false ;
-    this.red2_clockwise    = false ;
-    this.red3_clockwise    = false ;
+    this.right1_clockwise           = false ;
+    this.right2_clockwise           = false ;
+    this.right3_clockwise           = false ;
+    this.left1_clockwise            = false ;
+    this.left2_clockwise            = false ;
+    this.left3_clockwise            = false ;
 
-    this.green1_clockwise  = false ;
-    this.green2_clockwise  = false ;
-    this.green3_clockwise  = false ;
-    this.blue1_clockwise   = false ;
-    this.blue2_clockwise   = false ;  
-    this.blue3_clockwise   = false ;
+    this.back1_clockwise            = false ;
+    this.back2_clockwise            = false ;
+    this.back3_clockwise            = false ;
+    this.front1_clockwise           = false ;
+    this.front2_clockwise           = false ;  
+    this.front3_clockwise           = false ;
 
-    this.white1_clockwise  = false ;
-    this.white2_clockwise  = false ;
-    this.white3_clockwise  = false ;
-    this.yellow1_clockwise = false ;
-    this.yellow2_clockwise = false ;
-    this.yellow3_clockwise = false ;
+    this.up1_clockwise              = false ;
+    this.up2_clockwise              = false ;
+    this.up3_clockwise              = false ;
+    this.down1_clockwise            = false ;
+    this.down2_clockwise            = false ;
+    this.down3_clockwise            = false ;
 
     this.rotateAngle = 0.0;
+    this.rotateSpeed = 89.0;
+  }
+
+  void init(){
+    for(int i=0;i<3;i++){
+      for(int k=0;k<2;k++){
+        for(int j=0;j<3;j++){
+          this.cubebox[j][i][k].frontFace = "BLACK";
+        }
+      }
+      for(int k=1;k<3;k++){
+        for(int j=0;j<3;j++){
+          this.cubebox[j][i][k].backFace = "BLACK";
+        }
+      }
+      for(int k=0;k<2;k++){
+        for(int j=0;j<3;j++){
+          this.cubebox[k][i][j].rightFace = "BLACK";
+        }
+      }
+      for(int k=1;k<3;k++){
+        for(int j=0;j<3;j++){
+          this.cubebox[k][i][j].leftFace = "BLACK";
+        }
+      }
+      if(i==0 || i==1){
+        for(int k=0;k<3;k++){
+          for(int j=0;j<3;j++){
+            this.cubebox[k][i][j].downFace = "BLACK";
+          }
+        }
+      }
+      if(i==1 || i==2){
+        for(int k=0;k<3;k++){
+          for(int j=0;j<3;j++){
+            this.cubebox[k][i][j].upFace = "BLACK";
+          }
+        }
+      }
+    }
   }
   
   void createSurface(float len){
@@ -207,7 +248,70 @@ class RubikCube {
     CubeLine(this.sideLinethickness);
   }
 
-  void UpdateOrange3(){
+  void Updateright3(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[0][m][n].upFace;
+        this.cubebox[0][m][n].upFace    = this.cubebox[0][m][n].frontFace;
+        this.cubebox[0][m][n].frontFace  = this.cubebox[0][m][n].downFace;
+        this.cubebox[0][m][n].downFace  = this.cubebox[0][m][n].backFace;
+        this.cubebox[0][m][n].backFace = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[0][m][n];
+      }
+    }
+
+    for(int m=0;m<3;m++){
+      for(int n=2;n>=0;n--){
+        this.cubebox[0][n][m] = tmpColorArr[m*3+2-n];
+      }
+    }
+  }
+
+  void Updateright2(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[1][m][n].upFace;
+        this.cubebox[1][m][n].upFace    = this.cubebox[1][m][n].frontFace;
+        this.cubebox[1][m][n].frontFace = this.cubebox[1][m][n].downFace;
+        this.cubebox[1][m][n].downFace  = this.cubebox[1][m][n].backFace;
+        this.cubebox[1][m][n].backFace  = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[1][m][n];
+      }
+    }
+
+    for(int m=0;m<3;m++){
+      for(int n=2;n>=0;n--){
+        this.cubebox[1][n][m] = tmpColorArr[m*3+2-n];
+      }
+    }
+  }
+
+  void Updateright1(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[2][m][n].upFace;
+        this.cubebox[2][m][n].upFace    = this.cubebox[2][m][n].frontFace;
+        this.cubebox[2][m][n].frontFace  = this.cubebox[2][m][n].downFace;
+        this.cubebox[2][m][n].downFace  = this.cubebox[2][m][n].backFace;
+        this.cubebox[2][m][n].backFace = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[2][m][n];
+      }
+    }
+
+    for(int m=0;m<3;m++){
+      for(int n=2;n>=0;n--){
+        this.cubebox[2][n][m] = tmpColorArr[m*3+2-n];
+      }
+    }
+  }
+
+  void Update_Counterclockwise_right3(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
 
     for(int m=0;m<3;m++){
@@ -221,19 +325,19 @@ class RubikCube {
       }
     }
 
-    for(int m=0;m<3;m++){
-      for(int n=2;n>=0;n--){
-        this.cubebox[0][n][m] = tmpColorArr[m*3+2-n];
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[0][n][m] = tmpColorArr[(2-m)*3+n];
       }
     }
   }
 
-  void UpdateOrange2(){
+  void Update_Counterclockwise_right2(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
 
     for(int m=0;m<3;m++){
       for(int n=0;n<3;n++){
-        String tmpcolor = this.cubebox[0][m][n].upFace;
+        String tmpcolor = this.cubebox[1][m][n].upFace;
         this.cubebox[1][m][n].upFace    = this.cubebox[1][m][n].backFace;
         this.cubebox[1][m][n].backFace  = this.cubebox[1][m][n].downFace;
         this.cubebox[1][m][n].downFace  = this.cubebox[1][m][n].frontFace;
@@ -242,14 +346,14 @@ class RubikCube {
       }
     }
 
-    for(int m=0;m<3;m++){
-      for(int n=2;n>=0;n--){
-        this.cubebox[1][n][m] = tmpColorArr[m*3+2-n];
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[1][n][m] = tmpColorArr[(2-m)*3+n];
       }
     }
   }
 
-  void UpdateOrange1(){
+  void Update_Counterclockwise_right1(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
 
     for(int m=0;m<3;m++){
@@ -263,14 +367,74 @@ class RubikCube {
       }
     }
 
-    for(int m=0;m<3;m++){
-      for(int n=2;n>=0;n--){
-        this.cubebox[2][n][m] = tmpColorArr[m*3+2-n];
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[2][n][m] = tmpColorArr[(2-m)*3+n];
       }
     }
   }
 
-  void UpdateGreen1(){
+  void Updateback1(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[m][n][0].upFace;
+        this.cubebox[m][n][0].upFace    = this.cubebox[m][n][0].leftFace;
+        this.cubebox[m][n][0].leftFace  = this.cubebox[m][n][0].downFace;
+        this.cubebox[m][n][0].downFace  = this.cubebox[m][n][0].rightFace;
+        this.cubebox[m][n][0].rightFace = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[m][n][0];
+      }
+    }
+
+    for(int m=0;m<3;m++){
+      for(int n=2;n>=0;n--){
+        this.cubebox[n][m][0] = tmpColorArr[(m)*3+2-n];
+      }
+    }
+  }
+
+  void Updateback2(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[m][n][1].upFace;
+        this.cubebox[m][n][1].upFace    = this.cubebox[m][n][1].leftFace;
+        this.cubebox[m][n][1].leftFace  = this.cubebox[m][n][1].downFace;
+        this.cubebox[m][n][1].downFace  = this.cubebox[m][n][1].rightFace;
+        this.cubebox[m][n][1].rightFace = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[m][n][1];
+      }
+    }
+
+    for(int m=0;m<3;m++){
+      for(int n=2;n>=0;n--){
+        this.cubebox[n][m][1] = tmpColorArr[(m)*3+2-n];
+      }
+    }
+  }
+
+  void Updateback3(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[m][n][2].upFace;
+        this.cubebox[m][n][2].upFace    = this.cubebox[m][n][2].leftFace;
+        this.cubebox[m][n][2].leftFace  = this.cubebox[m][n][2].downFace;
+        this.cubebox[m][n][2].downFace  = this.cubebox[m][n][2].rightFace;
+        this.cubebox[m][n][2].rightFace = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[m][n][2];
+      }
+    }
+
+    for(int m=0;m<3;m++){
+      for(int n=2;n>=0;n--){
+        this.cubebox[n][m][2] = tmpColorArr[(m)*3+2-n];
+      }
+    }
+  }
+
+  void Update_Counterclockwise_back1(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
     for(int m=0;m<3;m++){
       for(int n=0;n<3;n++){
@@ -283,14 +447,14 @@ class RubikCube {
       }
     }
 
-    for(int m=0;m<3;m++){
-      for(int n=2;n>=0;n--){
-        this.cubebox[n][m][0] = tmpColorArr[m*3+(2-n)];
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[n][m][0] = tmpColorArr[(2-m)*3+n];
       }
     }
   }
 
-  void UpdateGreen2(){
+  void Update_Counterclockwise_back2(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
     for(int m=0;m<3;m++){
       for(int n=0;n<3;n++){
@@ -303,14 +467,14 @@ class RubikCube {
       }
     }
 
-    for(int m=0;m<3;m++){
-      for(int n=2;n>=0;n--){
-        this.cubebox[n][m][1] = tmpColorArr[m*3+(2-n)];
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[n][m][1] = tmpColorArr[(2-m)*3+n];
       }
     }
   }
 
-  void UpdateGreen3(){
+  void Update_Counterclockwise_back3(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
     for(int m=0;m<3;m++){
       for(int n=0;n<3;n++){
@@ -323,22 +487,22 @@ class RubikCube {
       }
     }
 
-    for(int m=0;m<3;m++){
-      for(int n=2;n>=0;n--){
-        this.cubebox[n][m][2] = tmpColorArr[m*3+(2-n)];
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[n][m][2] = tmpColorArr[(2-m)*3+n];
       }
     }
   }
 
-  void UpdateWhite1(){
+  void Updateup1(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
     for(int m=0;m<3;m++){
       for(int n=0;n<3;n++){
-        String tmpcolor = this.cubebox[n][0][m].leftFace;
-        this.cubebox[n][0][m].leftFace    = this.cubebox[n][0][m].backFace;
-        this.cubebox[n][0][m].backFace = this.cubebox[n][0][m].rightFace;
-        this.cubebox[n][0][m].rightFace  = this.cubebox[n][0][m].frontFace;
-        this.cubebox[n][0][m].frontFace  = tmpcolor;
+        String tmpcolor = this.cubebox[n][0][m].rightFace;
+        this.cubebox[n][0][m].rightFace = this.cubebox[n][0][m].frontFace;
+        this.cubebox[n][0][m].frontFace = this.cubebox[n][0][m].leftFace;
+        this.cubebox[n][0][m].leftFace  = this.cubebox[n][0][m].backFace;
+        this.cubebox[n][0][m].backFace  = tmpcolor;
         tmpColorArr[m*3+n] = this.cubebox[n][0][m];
       }
     }
@@ -350,15 +514,15 @@ class RubikCube {
     }
   }
 
-  void UpdateWhite2(){
+  void Updateup2(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
     for(int m=0;m<3;m++){
       for(int n=0;n<3;n++){
-        String tmpcolor = this.cubebox[n][1][m].leftFace;
-        this.cubebox[n][1][m].leftFace    = this.cubebox[n][1][m].backFace;
-        this.cubebox[n][1][m].backFace    = this.cubebox[n][1][m].rightFace;
-        this.cubebox[n][1][m].rightFace   = this.cubebox[n][1][m].frontFace;
-        this.cubebox[n][1][m].frontFace   = tmpcolor;
+        String tmpcolor = this.cubebox[n][1][m].rightFace;
+        this.cubebox[n][1][m].rightFace  = this.cubebox[n][1][m].frontFace;
+        this.cubebox[n][1][m].frontFace  = this.cubebox[n][1][m].leftFace;
+        this.cubebox[n][1][m].leftFace   = this.cubebox[n][1][m].backFace;
+        this.cubebox[n][1][m].backFace   = tmpcolor;
         tmpColorArr[m*3+n] = this.cubebox[n][1][m];
       }
     }
@@ -370,15 +534,15 @@ class RubikCube {
     }
   }
 
-  void UpdateWhite3(){
+  void Updateup3(){
     boxTemplate [] tmpColorArr = new boxTemplate[9];
     for(int m=0;m<3;m++){
       for(int n=0;n<3;n++){
-        String tmpcolor = this.cubebox[n][2][m].leftFace;
-        this.cubebox[n][2][m].leftFace    = this.cubebox[n][2][m].backFace;
-        this.cubebox[n][2][m].backFace    = this.cubebox[n][2][m].rightFace;
-        this.cubebox[n][2][m].rightFace   = this.cubebox[n][2][m].frontFace;
-        this.cubebox[n][2][m].frontFace   = tmpcolor;
+        String tmpcolor = this.cubebox[n][2][m].rightFace;
+        this.cubebox[n][2][m].rightFace  = this.cubebox[n][2][m].frontFace;
+        this.cubebox[n][2][m].frontFace  = this.cubebox[n][2][m].leftFace;
+        this.cubebox[n][2][m].leftFace   = this.cubebox[n][2][m].backFace;
+        this.cubebox[n][2][m].backFace   = tmpcolor;
         tmpColorArr[m*3+n] = this.cubebox[n][2][m];
       }
     }
@@ -390,21 +554,93 @@ class RubikCube {
     }
   }
 
+  void Update_Counterclockwise_up1(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[n][0][m].rightFace;
+        this.cubebox[n][0][m].rightFace = this.cubebox[n][0][m].backFace;
+        this.cubebox[n][0][m].backFace = this.cubebox[n][0][m].leftFace;
+        this.cubebox[n][0][m].leftFace  = this.cubebox[n][0][m].frontFace;
+        this.cubebox[n][0][m].frontFace  = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[n][0][m];
+      }
+    }
+
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[m][0][n] = tmpColorArr[(2-m)*3+n];
+      }
+    }
+  }
+
+  void Update_Counterclockwise_up2(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[n][1][m].rightFace;
+        this.cubebox[n][1][m].rightFace  = this.cubebox[n][1][m].backFace;
+        this.cubebox[n][1][m].backFace  = this.cubebox[n][1][m].leftFace;
+        this.cubebox[n][1][m].leftFace   = this.cubebox[n][1][m].frontFace;
+        this.cubebox[n][1][m].frontFace   = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[n][1][m];
+      }
+    }
+
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[m][1][n] = tmpColorArr[(2-m)*3+n];
+      }
+    }
+  }
+
+  void Update_Counterclockwise_up3(){
+    boxTemplate [] tmpColorArr = new boxTemplate[9];
+    for(int m=0;m<3;m++){
+      for(int n=0;n<3;n++){
+        String tmpcolor = this.cubebox[n][2][m].rightFace;
+        this.cubebox[n][2][m].rightFace  = this.cubebox[n][2][m].backFace;
+        this.cubebox[n][2][m].backFace  = this.cubebox[n][2][m].leftFace;
+        this.cubebox[n][2][m].leftFace   = this.cubebox[n][2][m].frontFace;
+        this.cubebox[n][2][m].frontFace   = tmpcolor;
+        tmpColorArr[m*3+n] = this.cubebox[n][2][m];
+      }
+    }
+
+    for(int m=2;m>=0;m--){
+      for(int n=0;n<3;n++){
+        this.cubebox[m][2][n] = tmpColorArr[(2-m)*3+n];
+      }
+    }
+  }
+
   /*
     because Cube it is symmetric
-    Red1 is equal to Orange3
-    Red2 is equal to Orange2
-    Red3 is equal to Orange1
+    left1 is equal to right3
+    left2 is equal to right2
+    left3 is equal to right1
   */
-  void UpdateRed1(){this.UpdateOrange3();}
-  void UpdateRed2(){this.UpdateOrange2();}
-  void UpdateRed3(){this.UpdateOrange1();}
+  void Updateleft1(){this.Updateright3();}
+  void Updateleft2(){this.Updateright2();}
+  void Updateleft3(){this.Updateright1();}
 
-  void UpdateBlue1(){this.UpdateGreen3();}
-  void UpdateBlue2(){this.UpdateGreen2();}
-  void UpdateBlue3(){this.UpdateGreen1();}
+  void Updatefront1(){this.Updateback3();}
+  void Updatefront2(){this.Updateback2();}
+  void Updatefront3(){this.Updateback1();}
 
-  void UpdateYellow1(){this.UpdateWhite3();}
-  void UpdateYellow2(){this.UpdateWhite2();}
-  void UpdateYellow3(){this.UpdateWhite1();}
+  void Updatedown1(){this.Updateup3();}
+  void Updatedown2(){this.Updateup2();}
+  void Updatedown3(){this.Updateup1();}
+  
+  void Update_Counterclockwise_left1(){this.Update_Counterclockwise_right3();}
+  void Update_Counterclockwise_left2(){this.Update_Counterclockwise_right2();}
+  void Update_Counterclockwise_left3(){this.Update_Counterclockwise_right1();}
+
+  void Update_Counterclockwise_front1(){this.Update_Counterclockwise_back3();}
+  void Update_Counterclockwise_front2(){this.Update_Counterclockwise_back2();}
+  void Update_Counterclockwise_front3(){this.Update_Counterclockwise_back1();}
+
+  void Update_Counterclockwise_down1(){this.Update_Counterclockwise_up3();}
+  void Update_Counterclockwise_down2(){this.Update_Counterclockwise_up2();}
+  void Update_Counterclockwise_down3(){this.Update_Counterclockwise_up1();}
 }

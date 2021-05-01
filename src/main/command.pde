@@ -12,70 +12,128 @@ class commandTemplate{
 	}
     
 	void enable(String commandstr){
-		if(commandstr.equals("green1_clockwise")){
-				Cube.green1_clockwise = true;
-		} else if(commandstr.equals("green2_clockwise")){
-				Cube.green2_clockwise = true;
-		} else if(commandstr.equals("green3_clockwise")){
-				Cube.green3_clockwise = true;
-		} else if(commandstr.equals("red1_clockwise")){
-				Cube.red1_clockwise = true;
-		} else if(commandstr.equals("red2_clockwise")){
-				Cube.red2_clockwise = true;
-		} else if(commandstr.equals("red3_clockwise")){
-				Cube.red3_clockwise = true;
-		} else if(commandstr.equals("yellow1_clockwise")){
-				Cube.yellow1_clockwise = true;
-		} else if(commandstr.equals("yellow2_clockwise")){
-				Cube.yellow2_clockwise = true;
-		} else if(commandstr.equals("yellow3_clockwise")){
-				Cube.yellow3_clockwise = true;
-		} else if(commandstr.equals("blue1_clockwise")){
-				Cube.blue1_clockwise = true;
-		} else if(commandstr.equals("blue2_clockwise")){
-				Cube.blue2_clockwise = true;
-		} else if(commandstr.equals("blue3_clockwise")){
-				Cube.blue3_clockwise = true;
-		} else if(commandstr.equals("orange1_clockwise")){
-				Cube.orange1_clockwise = true;
-		} else if(commandstr.equals("orange2_clockwise")){
-				Cube.orange2_clockwise = true;
-		} else if(commandstr.equals("orange3_clockwise")){
-				Cube.orange3_clockwise = true;
-		} else if(commandstr.equals("white1_clockwise")){
-				Cube.white1_clockwise = true;
-		} else if(commandstr.equals("white2_clockwise")){
-				Cube.white2_clockwise = true;
-		} else if(commandstr.equals("white3_clockwise")){
-				Cube.white3_clockwise = true;
+		if(commandstr.equals("back1_clockwise")){
+				Cube.back1_clockwise	= true;
+		} else if(commandstr.equals("back2_clockwise")){
+				Cube.back2_clockwise 	= true;
+		} else if(commandstr.equals("back3_clockwise")){
+				Cube.back3_clockwise 	= true;
+		} else if(commandstr.equals("left1_clockwise")){
+				Cube.left1_clockwise 	= true;
+		} else if(commandstr.equals("left2_clockwise")){
+				Cube.left2_clockwise 	= true;
+		} else if(commandstr.equals("left3_clockwise")){
+				Cube.left3_clockwise 	= true;
+		} else if(commandstr.equals("down1_clockwise")){
+				Cube.down1_clockwise	= true;
+		} else if(commandstr.equals("down2_clockwise")){
+				Cube.down2_clockwise 	= true;
+		} else if(commandstr.equals("down3_clockwise")){
+				Cube.down3_clockwise 	= true;
+		} else if(commandstr.equals("front1_clockwise")){
+				Cube.front1_clockwise = true;
+		} else if(commandstr.equals("front2_clockwise")){
+				Cube.front2_clockwise = true;
+		} else if(commandstr.equals("front3_clockwise")){
+				Cube.front3_clockwise = true;
+		} else if(commandstr.equals("right1_clockwise")){
+				Cube.right1_clockwise = true;
+		} else if(commandstr.equals("right2_clockwise")){
+				Cube.right2_clockwise = true;
+		} else if(commandstr.equals("right3_clockwise")){
+				Cube.right3_clockwise = true;
+		} else if(commandstr.equals("up1_clockwise")){
+				Cube.up1_clockwise 		= true;
+		} else if(commandstr.equals("up2_clockwise")){
+				Cube.up2_clockwise 		= true;
+		} else if(commandstr.equals("up3_clockwise")){
+				Cube.up3_clockwise 		= true;
+		} else if(commandstr.equals("back1_Counterclockwise")){
+				Cube.back1_Counterclockwise 	= true;
+		} else if(commandstr.equals("back2_Counterclockwise")){
+				Cube.back2_Counterclockwise 	= true;
+		} else if(commandstr.equals("back3_Counterclockwise")){
+				Cube.back3_Counterclockwise 	= true;
+		} else if(commandstr.equals("left1_Counterclockwise")){
+				Cube.left1_Counterclockwise 	= true;
+		} else if(commandstr.equals("left2_Counterclockwise")){
+				Cube.left2_Counterclockwise 	= true;
+		} else if(commandstr.equals("left3_Counterclockwise")){
+				Cube.left3_Counterclockwise 	= true;
+		} else if(commandstr.equals("down1_Counterclockwise")){
+				Cube.down1_Counterclockwise		= true;
+		} else if(commandstr.equals("down2_Counterclockwise")){
+				Cube.down2_Counterclockwise 	= true;
+		} else if(commandstr.equals("down3_Counterclockwise")){
+				Cube.down3_Counterclockwise 	= true;
+		} else if(commandstr.equals("front1_Counterclockwise")){
+				Cube.front1_Counterclockwise 	= true;
+		} else if(commandstr.equals("front2_Counterclockwise")){
+				Cube.front2_Counterclockwise 	= true;
+		} else if(commandstr.equals("front3_Counterclockwise")){
+				Cube.front3_Counterclockwise 	= true;
+		} else if(commandstr.equals("right1_Counterclockwise")){
+				Cube.right1_Counterclockwise 	= true;
+		} else if(commandstr.equals("right2_Counterclockwise")){
+				Cube.right2_Counterclockwise 	= true;
+		} else if(commandstr.equals("right3_Counterclockwise")){
+				Cube.right3_Counterclockwise 	= true;
+		} else if(commandstr.equals("up1_Counterclockwise")){
+				Cube.up1_Counterclockwise 		= true;
+		} else if(commandstr.equals("up2_Counterclockwise")){
+				Cube.up2_Counterclockwise 		= true;
+		} else if(commandstr.equals("up3_Counterclockwise")){
+				Cube.up3_Counterclockwise 		= true;
 		}
 	}
 
 	void disable(String commandstr){
-		Cube.green1_clockwise 	= false;
-		Cube.green2_clockwise 	= false;
-		Cube.green3_clockwise 	= false;
-		Cube.red1_clockwise 		= false;
-		Cube.red2_clockwise 		= false;
-		Cube.red3_clockwise 		= false;
-		Cube.yellow1_clockwise 	= false;
-		Cube.yellow2_clockwise 	= false;
-		Cube.yellow3_clockwise 	= false;
-		Cube.blue1_clockwise 		= false;
-		Cube.blue2_clockwise 		= false;
-		Cube.blue3_clockwise 		= false;
-		Cube.orange1_clockwise 	= false;
-		Cube.orange2_clockwise 	= false;
-		Cube.orange3_clockwise 	= false;
-		Cube.white1_clockwise 	= false;
-		Cube.white2_clockwise 	= false;
-		Cube.white3_clockwise 	= false;
+		Cube.back1_clockwise 			= false;
+		Cube.back2_clockwise 			= false;
+		Cube.back3_clockwise 			= false;
+		Cube.left1_clockwise 			= false;
+		Cube.left2_clockwise 			= false;
+		Cube.left3_clockwise 			= false;
+		Cube.down1_clockwise 			= false;
+		Cube.down2_clockwise 			= false;
+		Cube.down3_clockwise 			= false;
+		Cube.front1_clockwise 			= false;
+		Cube.front2_clockwise 			= false;
+		Cube.front3_clockwise 			= false;
+		Cube.right1_clockwise 			= false;
+		Cube.right2_clockwise 			= false;
+		Cube.right3_clockwise 			= false;
+		Cube.up1_clockwise 				= false;
+		Cube.up2_clockwise 				= false;
+		Cube.up3_clockwise 				= false;
+
+		Cube.back1_Counterclockwise 	= false;
+		Cube.back2_Counterclockwise 	= false;
+		Cube.back3_Counterclockwise 	= false;
+		Cube.left1_Counterclockwise 	= false;
+		Cube.left2_Counterclockwise 	= false;
+		Cube.left3_Counterclockwise 	= false;
+		Cube.down1_Counterclockwise 	= false;
+		Cube.down2_Counterclockwise 	= false;
+		Cube.down3_Counterclockwise 	= false;
+		Cube.front1_Counterclockwise 	= false;
+		Cube.front2_Counterclockwise 	= false;
+		Cube.front3_Counterclockwise 	= false;
+		Cube.right1_Counterclockwise 	= false;
+		Cube.right2_Counterclockwise 	= false;
+		Cube.right3_Counterclockwise 	= false;
+		Cube.up1_Counterclockwise 		= false;
+		Cube.up2_Counterclockwise 		= false;
+		Cube.up3_Counterclockwise 		= false;
 	}
 
 	void read(){
 		this.commandfile = loadStrings("./command.txt");
 		if(this.commandfile.length==0){
 			this.fileMutex = false;
+			// Debug.formatprintcolor();
+			Debug.printcolor();
+			exit();
 		} else {
 			this.command = this.commandfile[0];
 			this.fileMutex = true;

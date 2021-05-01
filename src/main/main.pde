@@ -10,10 +10,9 @@ void settings() {
 float sideLength = 100;
 
 RubikCube Cube;
-PeasyCam cam;
+debugTemplate Debug;
 commandTemplate Command;
-
-String line;
+PeasyCam cam;
 
 void setup(){
   noFill();
@@ -25,6 +24,9 @@ void setup(){
   cam.setMaximumDistance(2000);
 
   Command = new commandTemplate();
+  Debug = new debugTemplate();
+
+  Cube.init();
 
   // command = loadStrings("./command.txt");
   // commandmaxcnt = command.length;
@@ -44,12 +46,12 @@ void draw(){
   line(0, 0, -700, 0, 0, 700);  
 
   textSize(25);
-  text("white",200,-200,200);
-  text("orange",500,200,200);
-  text("yellow",200,400,200);
-  text("red",-300,200,200);
-  text("blue",150,200,500);
-  text("green",150,200,-300);
+  text("white up",200,-200,200); // UP
+  text("orange right",500,200,200); // right
+  text("yellow down",200,400,200); // down
+  text("red left",-300,200,200);   // left
+  text("blue front",150,200,500);   // front
+  text("green back",150,200,-300); // back
 
   for(int i=0;i<3;i++){
     for(int j=0;j<3;j++){
@@ -57,9 +59,7 @@ void draw(){
         pushMatrix();
 
         if(Command.fileMutex == true){
-          print("here");
           if(Command.processMutex==true){
-            print(Command.command);
             Command.enable(Command.command);
             Command.processMutex = false;
           }
@@ -68,28 +68,46 @@ void draw(){
         // i==0 Green1 Blue3
         // i==1 Green2 Blue2
         // i==2 Green3 Blue1        
-        if((i==0 && Cube.green1_clockwise) || (i==1 && Cube.green2_clockwise) || (i==2 && Cube.green3_clockwise) || 
-           (i==0 && Cube.blue3_clockwise)  || (i==1 && Cube.blue2_clockwise)  || (i==2 && Cube.blue1_clockwise) ){
+        if((i==0 && Cube.back1_clockwise)   || (i==1 && Cube.back2_clockwise)   || (i==2 && Cube.back3_clockwise) || 
+           (i==0 && Cube.front3_clockwise)  || (i==1 && Cube.front2_clockwise)  || (i==2 && Cube.front1_clockwise) ){
           translate(150-(150*sqrt(2)*sin(radians(45-Cube.rotateAngle))),150-(150*sqrt(2)*cos(radians(45-Cube.rotateAngle))),0);
           rotateZ(radians(Cube.rotateAngle));
+        }
+
+        if((i==0 && Cube.back1_Counterclockwise)  || (i==1 && Cube.back2_Counterclockwise)  || (i==2 && Cube.back3_Counterclockwise) || 
+           (i==0 && Cube.front3_Counterclockwise) || (i==1 && Cube.front2_Counterclockwise) || (i==2 && Cube.front1_Counterclockwise) ){
+          translate(150-(150*sqrt(2)*cos(radians(-45+Cube.rotateAngle))),150+(150*sqrt(2)*sin(radians(-45+Cube.rotateAngle))),0);
+          rotateZ(radians(-Cube.rotateAngle));
         }
 
         // j==0 White1 Yellow3
         // j==1 White2 Yellow2
         // j==2 White3 Yellow1
-        if((j==0 && Cube.white1_clockwise)  || (j==1 && Cube.white2_clockwise)  || (j==2 && Cube.white3_clockwise) || 
-           (j==0 && Cube.yellow3_clockwise) || (j==1 && Cube.yellow2_clockwise) || (j==2 && Cube.yellow1_clockwise)){
+        if((j==0 && Cube.up1_clockwise)   || (j==1 && Cube.up2_clockwise)   || (j==2 && Cube.up3_clockwise) || 
+           (j==0 && Cube.down3_clockwise) || (j==1 && Cube.down2_clockwise) || (j==2 && Cube.down1_clockwise)){
           translate(150-(150*sqrt(2)*cos(radians(45-Cube.rotateAngle))),0,150-(150*sqrt(2)*sin(radians(45-Cube.rotateAngle))));
           rotateY(radians(Cube.rotateAngle));
+        }
+
+        if((j==0 && Cube.up1_Counterclockwise)   || (j==1 && Cube.up2_Counterclockwise)   || (j==2 && Cube.up3_Counterclockwise) || 
+           (j==0 && Cube.down3_Counterclockwise) || (j==1 && Cube.down2_Counterclockwise) || (j==2 && Cube.down1_Counterclockwise)){
+          translate(150+(150*sqrt(2)*sin(radians(-45+Cube.rotateAngle))),0,150-(150*sqrt(2)*cos(radians(-45+Cube.rotateAngle))));
+          rotateY(radians(-Cube.rotateAngle));
         }
 
         // k==0 Orange3 Red1
         // k==1 Orange2 Red2
         // k==2 Orange1 Red3
-        if((k==0 && Cube.orange3_clockwise) || (k==1 && Cube.orange2_clockwise) || (k==2 && Cube.orange1_clockwise) ||
-           (k==0 && Cube.red1_clockwise)    || (k==1 && Cube.red2_clockwise)    || (k==2 && Cube.red3_clockwise)){
+        if((k==0 && Cube.right3_clockwise)  || (k==1 && Cube.right2_clockwise) || (k==2 && Cube.right1_clockwise) ||
+           (k==0 && Cube.left1_clockwise)   || (k==1 && Cube.left2_clockwise)  || (k==2 && Cube.left3_clockwise)){
           translate(0,150-(150*sqrt(2)*sin(radians(45-Cube.rotateAngle))),150-(150*sqrt(2)*cos(radians(45-Cube.rotateAngle))));
           rotateX(radians(Cube.rotateAngle));
+        }
+
+        if((k==0 && Cube.right3_Counterclockwise) || (k==1 && Cube.right2_Counterclockwise) || (k==2 && Cube.right1_Counterclockwise) ||
+           (k==0 && Cube.left1_Counterclockwise)  || (k==1 && Cube.left2_Counterclockwise)  || (k==2 && Cube.left3_Counterclockwise)){
+          translate(0,150-(150*sqrt(2)*cos(radians(-45+Cube.rotateAngle))),150+(150*sqrt(2)*sin(radians(-45+Cube.rotateAngle))));
+          rotateX(radians(-Cube.rotateAngle));
         }
         
         translate(sideLength/2+k*sideLength, sideLength/2+j*sideLength, sideLength/2+i*sideLength);
@@ -99,199 +117,430 @@ void draw(){
     }
   }
 
-  if(Cube.green1_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.right1_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateGreen1();
+      Cube.Update_Counterclockwise_right1();
       Cube.rotateAngle = 0.0;
-      Cube.green1_clockwise = false;
+      Cube.right1_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.green2_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.right2_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateGreen2();
+      Cube.Update_Counterclockwise_right2();
       Cube.rotateAngle = 0.0;
-      Cube.green2_clockwise = false;
+      Cube.right2_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.green3_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.right3_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateGreen3();
+      Cube.Update_Counterclockwise_right3();
       Cube.rotateAngle = 0.0;
-      Cube.green3_clockwise = false;
+      Cube.right3_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.white1_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.back1_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateWhite1();
+      Cube.Updateback1();
       Cube.rotateAngle = 0.0;
-      Cube.white1_clockwise = false;
+      Cube.back1_clockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.white2_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.back2_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateWhite2 ();
+      Cube.Updateback2();
       Cube.rotateAngle = 0.0;
-      Cube.white2_clockwise = false;
+      Cube.back2_clockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.white3_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.back3_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateWhite3();
+      Cube.Updateback3();
       Cube.rotateAngle = 0.0;
-      Cube.white3_clockwise = false;
+      Cube.back3_clockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.red3_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.back1_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateRed3();
+      Cube.Update_Counterclockwise_back1();
       Cube.rotateAngle = 0.0;
-      Cube.red3_clockwise = false;
+      Cube.back1_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.red2_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.back2_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateRed2();
+      Cube.Update_Counterclockwise_back2();
       Cube.rotateAngle = 0.0;
-      Cube.red2_clockwise = false;
+      Cube.back2_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.red1_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.back3_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateRed1();
+      Cube.Update_Counterclockwise_back3();
       Cube.rotateAngle = 0.0;
-      Cube.red1_clockwise = false;
+      Cube.back3_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.orange1_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.up1_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateOrange1();
+      Cube.Updateup1();
       Cube.rotateAngle = 0.0;
-      Cube.orange1_clockwise = false;
+      Cube.up1_clockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.orange2_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.up2_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateOrange2();
+      Cube.Updateup2();
       Cube.rotateAngle = 0.0;
-      Cube.orange2_clockwise = false;
+      Cube.up2_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.up3_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updateup3();
+      Cube.rotateAngle = 0.0;
+      Cube.up3_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.up1_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_up1();
+      Cube.rotateAngle = 0.0;
+      Cube.up1_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.up2_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_up2();
+      Cube.rotateAngle = 0.0;
+      Cube.up2_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.up3_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_up3();
+      Cube.rotateAngle = 0.0;
+      Cube.up3_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.left3_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updateleft3();
+      Cube.rotateAngle = 0.0;
+      Cube.left3_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.left2_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updateleft2();
+      Cube.rotateAngle = 0.0;
+      Cube.left2_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.left1_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updateleft1();
+      Cube.rotateAngle = 0.0;
+      Cube.left1_clockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
   
-  if(Cube.orange3_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.left1_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateOrange3();
+      Cube.Update_Counterclockwise_left1();
       Cube.rotateAngle = 0.0;
-      Cube.orange3_clockwise = false;
+      Cube.left1_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.blue3_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.left2_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateBlue3();
+      Cube.Update_Counterclockwise_left2();
       Cube.rotateAngle = 0.0;
-      Cube.blue3_clockwise = false;
+      Cube.left2_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.blue2_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.left3_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateBlue2();
+      Cube.Update_Counterclockwise_left3();
       Cube.rotateAngle = 0.0;
-      Cube.blue2_clockwise = false;
+      Cube.left3_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.blue1_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.right1_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateBlue1();
+      Cube.Updateright1();
       Cube.rotateAngle = 0.0;
-      Cube.blue1_clockwise = false;
+      Cube.right1_clockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.yellow1_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.right2_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateYellow1();
+      Cube.Updateright2();
       Cube.rotateAngle = 0.0;
-      Cube.yellow1_clockwise = false;
+      Cube.right2_clockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
   
-  if(Cube.yellow2_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.right3_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateYellow2();
+      Cube.Updateright3();
       Cube.rotateAngle = 0.0;
-      Cube.yellow2_clockwise = false;
+      Cube.right3_clockwise = false;
       Command.processMutex = true;
       Command.clear();
     }
   }
 
-  if(Cube.yellow3_clockwise){
-    Cube.rotateAngle += 1;
+  if(Cube.right3_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
     if(Cube.rotateAngle>90){
-      Cube.UpdateYellow3();
+      Cube.Update_Counterclockwise_right3();
       Cube.rotateAngle = 0.0;
-      Cube.yellow3_clockwise = false;
+      Cube.right3_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.right2_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_right2();
+      Cube.rotateAngle = 0.0;
+      Cube.right2_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.right1_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_right1();
+      Cube.rotateAngle = 0.0;
+      Cube.right1_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.front3_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updatefront3();
+      Cube.rotateAngle = 0.0;
+      Cube.front3_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.front2_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updatefront2();
+      Cube.rotateAngle = 0.0;
+      Cube.front2_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.front1_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updatefront1();
+      Cube.rotateAngle = 0.0;
+      Cube.front1_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.front1_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_front1();
+      Cube.rotateAngle = 0.0;
+      Cube.front1_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.front2_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_front2();
+      Cube.rotateAngle = 0.0;
+      Cube.front2_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.front3_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_front3();
+      Cube.rotateAngle = 0.0;
+      Cube.front3_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.down1_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updatedown1();
+      Cube.rotateAngle = 0.0;
+      Cube.down1_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+  
+  if(Cube.down2_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updatedown2();
+      Cube.rotateAngle = 0.0;
+      Cube.down2_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.down3_clockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Updatedown3();
+      Cube.rotateAngle = 0.0;
+      Cube.down3_clockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.down1_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_down1();
+      Cube.rotateAngle = 0.0;
+      Cube.down1_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.down2_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_down2();
+      Cube.rotateAngle = 0.0;
+      Cube.down2_Counterclockwise = false;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  if(Cube.down3_Counterclockwise){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.Update_Counterclockwise_down3();
+      Cube.rotateAngle = 0.0;
+      Cube.down3_Counterclockwise = false;
       Command.processMutex = true;
       Command.clear();
     }

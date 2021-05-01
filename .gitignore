@@ -1,2 +1,10 @@
 *.autosave
 .vscode
+
+src/result/*
+src/answer/*
+src/main/command.txt
+src/test/output.txt
+
+src/test/__pycache__
+src/testcase
