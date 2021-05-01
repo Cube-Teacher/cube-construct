@@ -2,6 +2,25 @@
 
 class debugTemplate{
 
+  void showcoordinate(){
+    line(-700, 0, 0, 700, 0, 0);  
+    line(0, -700, 0, 0, 700, 0);  
+    line(0, 0, -700, 0, 0, 700);  
+  }
+
+  void showcoordinateText(){
+    textSize(50);
+    text("up",200,-200,200);    // UP
+    text("right",500,200,200); // right
+    text("down",200,600,200);  // down
+    text("left",-300,200,200);    // left
+    text("front",150,200,500);   // front
+    text("back",150,200,-300);  // back
+    text("Y",0,750,0);
+    text("X",750,0,0);
+    text("Z",0,0,750);
+  }
+
   void printcommand(){
     print(Command.command,"\n");
   }

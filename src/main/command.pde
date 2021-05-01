@@ -133,7 +133,7 @@ class commandTemplate{
 			this.fileMutex = false;
 			// Debug.formatprintcolor();
 			Debug.printcolor();
-			exit();
+			// exit();
 		} else {
 			this.command = this.commandfile[0];
 			this.fileMutex = true;

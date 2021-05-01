@@ -40,18 +40,8 @@ void draw(){
   Command.read();
 
   background(255);
-
-  line(-700, 0, 0, 700, 0, 0);  
-  line(0, -700, 0, 0, 700, 0);  
-  line(0, 0, -700, 0, 0, 700);  
-
-  textSize(25);
-  text("white up",200,-200,200); // UP
-  text("orange right",500,200,200); // right
-  text("yellow down",200,400,200); // down
-  text("red left",-300,200,200);   // left
-  text("blue front",150,200,500);   // front
-  text("green back",150,200,-300); // back
+  Debug.showcoordinate();
+  Debug.showcoordinateText();
 
   for(int i=0;i<3;i++){
     for(int j=0;j<3;j++){

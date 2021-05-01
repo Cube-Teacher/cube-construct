@@ -5,6 +5,10 @@ from util import *
 sys_original_stdout = sys.stdout
 number_to_test = 100
 
+os.system("mkdir ../result")
+os.system("mkdir ../testcase")
+os.system("mkdir ../result")
+
 for j in range(100):
 	file_name = "../testcase/"+str(j)+".txt"
 	with open(file_name, "w+") as file_stdout:
