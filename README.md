@@ -50,3 +50,13 @@ In our API, API name = \<surface name\>\<distance with layer\>_\<Counterclockwis
 |right2_Counterclockwise |left2_Counterclockwise ||
 |right3_Counterclockwise |left1_Counterclockwise ||
 
+## rotate all cube
+
+|command|description|
+|:-:|:-:|
+|up_right|右翻|
+|up_left|左翻|
+|up_back|上翻|
+|up_front|下翻|
+|up_fix_right|右轉翻|
+|up_fix_left|左轉翻|

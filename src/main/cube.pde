@@ -131,6 +131,13 @@ class RubikCube {
   boolean down2_clockwise           ;
   boolean down3_clockwise           ;
 
+  boolean up_right;
+  boolean up_left;
+  boolean up_back;
+  boolean up_front;
+  boolean up_fix_right;
+  boolean up_fix_left;
+
   float rotateAngle;
   float rotateSpeed;
 
@@ -197,6 +204,13 @@ class RubikCube {
     this.down2_clockwise            = false ;
     this.down3_clockwise            = false ;
 
+    this.up_right                   = false ;
+    this.up_left                    = false ;
+    this.up_back                    = false ;
+    this.up_front                   = false ;
+    this.up_fix_right               = false ;
+    this.up_fix_left                = false ;
+
     this.rotateAngle = 0.0;
     this.rotateSpeed = 89.0;
   }
@@ -246,6 +260,118 @@ class RubikCube {
 
   void createSideline(){
     CubeLine(this.sideLinethickness);
+  }
+
+  void updateHandler(){
+    Cube.rotateAngle += Cube.rotateSpeed;
+    if(Cube.rotateAngle>90){
+      Cube.update();
+      Cube.rotateAngle = 0.0;
+      Command.processMutex = true;
+      Command.clear();
+    }
+  }
+
+  void update(){
+    if(Command.command.equals("up_right")){
+			Cube.Updatefront1();
+      Cube.Updatefront2();
+      Cube.Updatefront3();
+		} else if(Command.command.equals("up_left")){
+      Cube.Update_Counterclockwise_front1();
+      Cube.Update_Counterclockwise_front2();
+      Cube.Update_Counterclockwise_front3();
+		} else if(Command.command.equals("up_back")){
+      Cube.Updateleft1();
+      Cube.Updateleft2();
+      Cube.Updateleft3();
+		} else if(Command.command.equals("up_front")){
+      Cube.Update_Counterclockwise_left1();
+      Cube.Update_Counterclockwise_left2();
+      Cube.Update_Counterclockwise_left3();
+		} else if(Command.command.equals("up_fix_right")){
+      Cube.Update_Counterclockwise_up1();
+      Cube.Update_Counterclockwise_up2();
+      Cube.Update_Counterclockwise_up3();
+		} else if(Command.command.equals("up_fix_left")){
+      Cube.Updateup1();
+      Cube.Updateup2();
+      Cube.Updateup3();
+		} else {
+      if(Command.command.equals("back1_clockwise")){
+        Cube.Updateback1();
+      } else if(Command.command.equals("back2_clockwise")){
+        Cube.Updateback2();
+      } else if(Command.command.equals("back3_clockwise")){
+        Cube.Updateback3();
+      } else if(Command.command.equals("left1_clockwise")){
+        Cube.Updateleft1();
+      } else if(Command.command.equals("left2_clockwise")){
+        Cube.Updateleft2();
+      } else if(Command.command.equals("left3_clockwise")){
+        Cube.Updateleft3();
+      } else if(Command.command.equals("down1_clockwise")){
+        Cube.Updatedown1();
+      } else if(Command.command.equals("down2_clockwise")){
+        Cube.Updatedown2();
+      } else if(Command.command.equals("down3_clockwise")){
+        Cube.Updatedown3();
+      } else if(Command.command.equals("front1_clockwise")){
+        Cube.Updatefront1();
+      } else if(Command.command.equals("front2_clockwise")){
+        Cube.Updatefront2();
+      } else if(Command.command.equals("front3_clockwise")){
+        Cube.Updatefront3();
+      } else if(Command.command.equals("right1_clockwise")){
+        Cube.Updateright1();
+      } else if(Command.command.equals("right2_clockwise")){
+        Cube.Updateright2();
+      } else if(Command.command.equals("right3_clockwise")){
+        Cube.Updateright3();
+      } else if(Command.command.equals("up1_clockwise")){
+        Cube.Updateup1();
+      } else if(Command.command.equals("up2_clockwise")){
+        Cube.Updateup2();
+      } else if(Command.command.equals("up3_clockwise")){
+        Cube.Updateup3();
+      } else if(Command.command.equals("back1_Counterclockwise")){
+        Cube.Update_Counterclockwise_back1();
+      } else if(Command.command.equals("back2_Counterclockwise")){
+        Cube.Update_Counterclockwise_back2();
+      } else if(Command.command.equals("back3_Counterclockwise")){
+        Cube.Update_Counterclockwise_back3();
+      } else if(Command.command.equals("left1_Counterclockwise")){
+        Cube.Update_Counterclockwise_left1();
+      } else if(Command.command.equals("left2_Counterclockwise")){
+        Cube.Update_Counterclockwise_left2();
+      } else if(Command.command.equals("left3_Counterclockwise")){
+        Cube.Update_Counterclockwise_left3();
+      } else if(Command.command.equals("down1_Counterclockwise")){
+        Cube.Update_Counterclockwise_down1();
+      } else if(Command.command.equals("down2_Counterclockwise")){
+        Cube.Update_Counterclockwise_down2();
+      } else if(Command.command.equals("down3_Counterclockwise")){
+        Cube.Update_Counterclockwise_down3();
+      } else if(Command.command.equals("front1_Counterclockwise")){
+        Cube.Update_Counterclockwise_front1();
+      } else if(Command.command.equals("front2_Counterclockwise")){
+        Cube.Update_Counterclockwise_front2();
+      } else if(Command.command.equals("front3_Counterclockwise")){
+        Cube.Update_Counterclockwise_front3();
+      } else if(Command.command.equals("right1_Counterclockwise")){
+        Cube.Update_Counterclockwise_right1();
+      } else if(Command.command.equals("right2_Counterclockwise")){
+        Cube.Update_Counterclockwise_right2();
+      } else if(Command.command.equals("right3_Counterclockwise")){
+        Cube.Update_Counterclockwise_right3();
+      } else if(Command.command.equals("up1_Counterclockwise")){
+        Cube.Update_Counterclockwise_up1();
+      } else if(Command.command.equals("up2_Counterclockwise")){
+        Cube.Update_Counterclockwise_up2();
+      } else if(Command.command.equals("up3_Counterclockwise")){
+        Cube.Update_Counterclockwise_up3();
+      } 
+    }
   }
 
   void Updateright3(){

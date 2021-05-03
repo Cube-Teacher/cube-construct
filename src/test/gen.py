@@ -1,5 +1,6 @@
 import random
 import sys
+import os
 from util import *
 
 sys_original_stdout = sys.stdout
@@ -9,7 +10,7 @@ os.system("mkdir ../result")
 os.system("mkdir ../testcase")
 os.system("mkdir ../result")
 
-for j in range(100):
+for j in range(10):
 	file_name = "../testcase/"+str(j)+".txt"
 	with open(file_name, "w+") as file_stdout:
 			sys.stdout = file_stdout

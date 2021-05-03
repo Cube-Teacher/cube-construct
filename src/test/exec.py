@@ -2,7 +2,7 @@ import sys
 import os
 
 commandfile = "../main/command.txt"
-for j in range(100):
+for j in range(10):
     filename = "../testcase/" + str(j) + ".txt "
     resultname = "../result/" + str(j) + ".txt "
     os.system("cp " + str(filename) + commandfile)

@@ -10,7 +10,7 @@ back 	= []
 
 color_init(up, down, left, right, front, back)
 
-for j in range(100):
+for j in range(10):
 	file_name = "../testcase/"+str(j)+".txt"
 	tmpup 		= up.copy()
 	tmpdown = down.copy()

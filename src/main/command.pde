@@ -1,14 +1,14 @@
 class commandTemplate{
 
 	String[] 	commandfile 	;
-	String 		command				;
-	boolean 	fileMutex			;
+	String 		command			;
+	boolean 	fileMutex		;
 	boolean 	processMutex	;
 
 	commandTemplate(){
-		this.command 			= "";
-		this.fileMutex 		= false;
-		this.processMutex = true;
+		this.command 			= ""	;
+		this.fileMutex 			= false	;
+		this.processMutex 		= true	;
 	}
     
 	void enable(String commandstr){
@@ -84,47 +84,84 @@ class commandTemplate{
 				Cube.up2_Counterclockwise 		= true;
 		} else if(commandstr.equals("up3_Counterclockwise")){
 				Cube.up3_Counterclockwise 		= true;
+		} else if(commandstr.equals("up_right")){
+			Cube.up_right 					= true;
+			Cube.front1_clockwise  		 	= true;
+			Cube.front2_clockwise 		 	= true;
+			Cube.front3_clockwise 		 	= true;
+		} else if(commandstr.equals("up_left")){
+			Cube.up_left 					= true;
+			Cube.front1_Counterclockwise 	= true;
+			Cube.front2_Counterclockwise 	= true;
+			Cube.front3_Counterclockwise 	= true;
+		} else if(commandstr.equals("up_back")){
+			Cube.up_back 					= true;
+			Cube.left1_clockwise 			= true;
+			Cube.left2_clockwise 			= true;
+			Cube.left3_clockwise 			= true;
+		} else if(commandstr.equals("up_front")){
+			Cube.up_front 					= true;
+			Cube.left1_Counterclockwise 	= true;
+			Cube.left2_Counterclockwise 	= true;
+			Cube.left3_Counterclockwise 	= true;
+		} else if(commandstr.equals("up_fix_right")){
+			Cube.up_fix_right 				= true;
+			Cube.up1_Counterclockwise 	= true;
+			Cube.up2_Counterclockwise 	= true;
+			Cube.up3_Counterclockwise 	= true;
+		} else if(commandstr.equals("up_fix_left")){
+			Cube.up_fix_left 				= true;
+			Cube.up1_clockwise 			= true;
+			Cube.up2_clockwise 			= true;
+			Cube.up3_clockwise 			= true;
 		}
 	}
 
-	void disable(String commandstr){
-		Cube.back1_clockwise 			= false;
-		Cube.back2_clockwise 			= false;
-		Cube.back3_clockwise 			= false;
-		Cube.left1_clockwise 			= false;
-		Cube.left2_clockwise 			= false;
-		Cube.left3_clockwise 			= false;
-		Cube.down1_clockwise 			= false;
-		Cube.down2_clockwise 			= false;
-		Cube.down3_clockwise 			= false;
-		Cube.front1_clockwise 			= false;
-		Cube.front2_clockwise 			= false;
-		Cube.front3_clockwise 			= false;
-		Cube.right1_clockwise 			= false;
-		Cube.right2_clockwise 			= false;
-		Cube.right3_clockwise 			= false;
-		Cube.up1_clockwise 				= false;
-		Cube.up2_clockwise 				= false;
-		Cube.up3_clockwise 				= false;
+	void disable(){
+		Cube.back1_clockwise 			= false ;
+		Cube.back2_clockwise 			= false ;
+		Cube.back3_clockwise 			= false ;
+		Cube.left1_clockwise 			= false ;
+		Cube.left2_clockwise 			= false ;
+		Cube.left3_clockwise 			= false ;
+		Cube.down1_clockwise 			= false ;
+		Cube.down2_clockwise 			= false ;
+		Cube.down3_clockwise 			= false ;
+		Cube.front1_clockwise 			= false ; 
+		Cube.front2_clockwise 			= false ;
+		Cube.front3_clockwise 			= false ;
+		Cube.right1_clockwise 			= false ;
+		Cube.right2_clockwise 			= false ;
+		Cube.right3_clockwise 			= false ;
+		Cube.up1_clockwise 				= false ;
+		Cube.up2_clockwise 				= false ;
+		Cube.up3_clockwise 				= false ;
 
-		Cube.back1_Counterclockwise 	= false;
-		Cube.back2_Counterclockwise 	= false;
-		Cube.back3_Counterclockwise 	= false;
-		Cube.left1_Counterclockwise 	= false;
-		Cube.left2_Counterclockwise 	= false;
-		Cube.left3_Counterclockwise 	= false;
-		Cube.down1_Counterclockwise 	= false;
-		Cube.down2_Counterclockwise 	= false;
-		Cube.down3_Counterclockwise 	= false;
-		Cube.front1_Counterclockwise 	= false;
-		Cube.front2_Counterclockwise 	= false;
-		Cube.front3_Counterclockwise 	= false;
-		Cube.right1_Counterclockwise 	= false;
-		Cube.right2_Counterclockwise 	= false;
-		Cube.right3_Counterclockwise 	= false;
-		Cube.up1_Counterclockwise 		= false;
-		Cube.up2_Counterclockwise 		= false;
-		Cube.up3_Counterclockwise 		= false;
+		Cube.back1_Counterclockwise 	= false ;
+		Cube.back2_Counterclockwise 	= false ;
+		Cube.back3_Counterclockwise 	= false ;
+		Cube.left1_Counterclockwise 	= false ;
+		Cube.left2_Counterclockwise 	= false ;
+		Cube.left3_Counterclockwise 	= false ;
+		Cube.down1_Counterclockwise 	= false ;
+		Cube.down2_Counterclockwise 	= false ;
+		Cube.down3_Counterclockwise 	= false ;
+		Cube.front1_Counterclockwise 	= false ;
+		Cube.front2_Counterclockwise 	= false ;
+		Cube.front3_Counterclockwise 	= false ;
+		Cube.right1_Counterclockwise 	= false ;
+		Cube.right2_Counterclockwise 	= false ;
+		Cube.right3_Counterclockwise 	= false ;
+		Cube.up1_Counterclockwise 		= false ;
+		Cube.up2_Counterclockwise 		= false ;
+		Cube.up3_Counterclockwise 		= false ;
+
+		Cube.up_right                   = false ;
+		Cube.up_left                    = false ;
+		Cube.up_back                    = false ;
+		Cube.up_front                   = false ;
+		Cube.up_fix_right               = false ;
+		Cube.up_fix_left                = false ;
 	}
 
 	void read(){
@@ -133,7 +170,7 @@ class commandTemplate{
 			this.fileMutex = false;
 			// Debug.formatprintcolor();
 			Debug.printcolor();
-			// exit();
+			exit();
 		} else {
 			this.command = this.commandfile[0];
 			this.fileMutex = true;
@@ -149,5 +186,6 @@ class commandTemplate{
 		}
 		outputfile.flush();
 		outputfile.close();
+		this.disable();
 	}
 }

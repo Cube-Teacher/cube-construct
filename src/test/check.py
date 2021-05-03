@@ -1,6 +1,6 @@
 import sys
 
-for j in range(100):
+for j in range(10):
     ans_file = "../answer/"+str(j)+".txt"
     res_file = "../result/"+str(j)+".txt"
     ans_file = open(ans_file,"r")
