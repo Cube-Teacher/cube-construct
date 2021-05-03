@@ -24,18 +24,18 @@ void setup(){
   cam.setMaximumDistance(2000);
 
   Command = new commandTemplate();
-  Debug = new debugTemplate();
+  Debug   = new debugTemplate();
 
-  Cube.init();
+  Cube.add_black();
 }
 
 void draw(){
 
+  Cube.init();
   Command.read();
-
   background(255);
-  Debug.showcoordinate();
-  Debug.showcoordinateText();
+  // Debug.showcoordinate();
+  // Debug.showcoordinateText();
 
   for(int i=0;i<3;i++){
     for(int j=0;j<3;j++){

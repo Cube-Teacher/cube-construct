@@ -212,10 +212,70 @@ class RubikCube {
     this.up_fix_left                = false ;
 
     this.rotateAngle = 0.0;
-    this.rotateSpeed = 89.0;
+    this.rotateSpeed = 1.0;
+  }
+
+  String switch_init(String init){
+    if(init.equals("WHITE")){
+      return "WHITE";
+    } else if(init.equals("YELLOW")){
+      return "YELLOW";
+    } else if(init.equals("RED")){
+      return "RED";
+    } else if(init.equals("GREEN")){
+      return "GREEN";
+    } else if(init.equals("BLUE")){
+      return "BLUE";
+    } else if(init.equals("ORANGE")){
+      return "ORANGE";
+    }
+    return "";
   }
 
   void init(){
+    String[] tmp_init = loadStrings("./init.txt");
+		if(tmp_init.length==54){
+      print(Cube.cubebox[0][0][0].upFace);
+      for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+          Cube.cubebox[j][0][i].upFace    = switch_init(tmp_init[i*3+j]);
+        }
+      }
+      print(Cube.cubebox[0][0][0].upFace);
+      for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+          Cube.cubebox[j][i][2].frontFace = switch_init(tmp_init[i*3+j+9]);
+        }
+      }
+      for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+          Cube.cubebox[j][i][0].backFace  = switch_init(tmp_init[i*3+j+18]);
+        }
+      }
+      for(int i=0;i<3;i++){
+        for(int j=2;j>=0;j--){
+          Cube.cubebox[2][i][j].rightFace = switch_init(tmp_init[i*3+2-j+27]);
+        }
+      }
+      for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+          Cube.cubebox[0][i][j].leftFace  = switch_init(tmp_init[i*3+j+36]);
+        }
+      }
+      for(int i=2;i>=0;i--){
+        for(int j=0;j<3;j++){
+          Cube.cubebox[j][2][i].downFace  = switch_init(tmp_init[(2-i)*3+j+45]);
+        }
+      }
+      PrintWriter outputfile_tmp;
+      outputfile_tmp = createWriter("./init.txt");
+      outputfile_tmp.print("");
+      outputfile_tmp.flush();
+      outputfile_tmp.close();
+		}
+  }
+
+  void add_black(){
     for(int i=0;i<3;i++){
       for(int k=0;k<2;k++){
         for(int j=0;j<3;j++){
