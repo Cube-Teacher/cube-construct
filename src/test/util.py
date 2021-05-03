@@ -34,7 +34,13 @@ command = [
     "right3_Counterclockwise",
     "up1_Counterclockwise",
     "up2_Counterclockwise",
-    "up3_Counterclockwise"
+    "up3_Counterclockwise",
+    "up_right",
+    "up_left",
+    "up_back",
+    "up_front",
+    "up_fix_right",
+    "up_fix_left"
 ]
 
 

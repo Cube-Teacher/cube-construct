@@ -10,7 +10,7 @@ back 	= []
 
 color_init(up, down, left, right, front, back)
 
-for j in range(10):
+for j in range(50):
 	file_name = "../testcase/"+str(j)+".txt"
 	tmpup 		= up.copy()
 	tmpdown = down.copy()
@@ -79,6 +79,55 @@ for j in range(10):
 			elif(command == "down3_Counterclockwise" or command == "up1_Counterclockwise"):
 				edge_Counterclockwise_Rotate(tmpup)
 				center_Rotate(tmpleft, tmpfront, tmpright, tmpback, 0, 3)
+			
+			elif(command == "up_right"):
+				edge_clockwise_Rotate(tmpback)
+				center_Rotate2(tmpup, tmpleft, tmpdown, tmpright, 0, 3) 
+
+				center_Rotate2(tmpup, tmpleft, tmpdown, tmpright, 3, 6)
+
+				edge_Counterclockwise_Rotate(tmpfront)
+				center_Rotate2(tmpup, tmpleft, tmpdown, tmpright, 6, 9)
+			elif(command == "up_left"):
+				edge_Counterclockwise_Rotate(tmpback)
+				center_Rotate3(tmpup, tmpleft, tmpdown, tmpright, 0, 3) 
+
+				center_Rotate3(tmpup, tmpleft, tmpdown, tmpright, 3, 6)
+
+				edge_clockwise_Rotate(tmpfront)
+				center_Rotate3(tmpup, tmpleft, tmpdown, tmpright, 6, 9)
+			elif(command == "up_back"):
+				edge_clockwise_Rotate(tmpleft)
+				center_Rotate(tmpup, tmpfront, tmpdown, tmpback, 0, 7, 1)
+
+				center_Rotate(tmpup, tmpfront, tmpdown, tmpback, 1, 8, 1)
+
+				edge_Counterclockwise_Rotate(tmpright)
+				center_Rotate(tmpup, tmpfront, tmpdown, tmpback, 2, 9, 1)
+			elif(command == "up_front"):
+				edge_clockwise_Rotate(tmpright)
+				center_Rotate(tmpfront, tmpup, tmpback, tmpdown, 2, 9, 2)
+
+				center_Rotate(tmpfront, tmpup, tmpback, tmpdown, 1, 8, 2)
+
+				edge_Counterclockwise_Rotate(tmpleft)
+				center_Rotate(tmpfront, tmpup, tmpback, tmpdown, 0, 7, 2)
+			elif(command == "up_fix_right"):
+				edge_clockwise_Rotate(tmpdown)
+				center_Rotate(tmpleft, tmpfront, tmpright, tmpback, 6, 9)
+
+				center_Rotate(tmpleft, tmpfront, tmpright, tmpback, 3, 6)
+
+				edge_Counterclockwise_Rotate(tmpup)
+				center_Rotate(tmpleft, tmpfront, tmpright, tmpback, 0, 3)
+			elif(command == "up_fix_left"):
+				edge_Counterclockwise_Rotate(tmpdown)
+				center_Rotate(tmpleft, tmpback, tmpright, tmpfront, 6, 9)
+
+				center_Rotate(tmpleft, tmpback, tmpright, tmpfront, 3, 6)
+
+				edge_clockwise_Rotate(tmpup)
+				center_Rotate(tmpleft, tmpback, tmpright, tmpfront, 0, 3)
 
 			printcube(tmpup, tmpdown, tmpleft, tmpright, tmpfront, tmpback)
 			print()
