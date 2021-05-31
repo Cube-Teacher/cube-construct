@@ -169,8 +169,8 @@ class commandTemplate{
 		if(this.commandfile.length==0){
 			this.fileMutex = false;
 			// Debug.formatprintcolor();
-			Debug.printcolor();
-			exit();
+			// Debug.printcolor();
+			// exit();
 		} else {
 			this.command = this.commandfile[0];
 			this.fileMutex = true;

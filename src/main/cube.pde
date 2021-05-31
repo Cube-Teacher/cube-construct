@@ -235,21 +235,19 @@ class RubikCube {
   void init(){
     String[] tmp_init = loadStrings("./init.txt");
 		if(tmp_init.length==54){
-      print(Cube.cubebox[0][0][0].upFace);
       for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
           Cube.cubebox[j][0][i].upFace    = switch_init(tmp_init[i*3+j]);
         }
       }
-      print(Cube.cubebox[0][0][0].upFace);
       for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
           Cube.cubebox[j][i][2].frontFace = switch_init(tmp_init[i*3+j+9]);
         }
       }
       for(int i=0;i<3;i++){
-        for(int j=0;j<3;j++){
-          Cube.cubebox[j][i][0].backFace  = switch_init(tmp_init[i*3+j+18]);
+        for(int j=2;j>=0;j--){
+          Cube.cubebox[j][i][0].backFace  = switch_init(tmp_init[i*3+2-j+18]);
         }
       }
       for(int i=0;i<3;i++){

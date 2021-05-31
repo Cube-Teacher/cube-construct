@@ -8,7 +8,7 @@ number_to_test = 200
 
 os.system("mkdir ../result")
 os.system("mkdir ../testcase")
-os.system("mkdir ../result")
+os.system("mkdir ../answer")
 
 for j in range(50):
 	file_name = "../testcase/"+str(j)+".txt"
