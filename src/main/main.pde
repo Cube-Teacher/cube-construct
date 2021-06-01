@@ -34,8 +34,8 @@ void draw(){
   Cube.init();
   Command.read();
   background(255);
-  // Debug.showcoordinate();
-  // Debug.showcoordinateText();
+  Debug.showcoordinate();
+  Debug.showcoordinateText();
 
   for(int i=0;i<3;i++){
     for(int j=0;j<3;j++){
@@ -94,6 +94,7 @@ void draw(){
           rotateX(radians(-Cube.rotateAngle));
         }
         
+        // translate(sideLength*-1+k*sideLength, sideLength*-1+j*sideLength, sideLength*-1+i*sideLength);
         translate(sideLength/2+k*sideLength, sideLength/2+j*sideLength, sideLength/2+i*sideLength);
         Cube.cubebox[k][j][i].creatBox();
         popMatrix();
